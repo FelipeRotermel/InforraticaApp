@@ -1,40 +1,60 @@
 import React from 'react';
-import { ScrollView, StyleSheet, View, Text } from 'react-native';
-import { Navbar, Nav } from 'react-bootstrap';
-import Container from 'react-bootstrap/Container';
-
+import { StatusBar } from 'expo-status-bar';
+import { Appbar, Menu } from 'react-native-paper';
+import { StyleSheet, Image, View } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
 
 function Header({ navigation }) {
+  const [visible, setVisible] = React.useState(false);
+
+  const openMenu = () => setVisible(true);
+
+  const closeMenu = () => setVisible(false);
+
   return (
-    <Navbar variant="dark" expand="lg" fixed="top" bg='dark'>
-      <Container>
-        <Navbar.Brand onClick={() => navigation.navigate('Home')}><img
-              src="https://uploaddeimagens.com.br/images/004/428/170/full/logo.png?1681347921"
-              width="35"
-              height="35"
-              className="d-inline-block align-top"
-            />INFORRATICA
-        </Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav>
-            <Nav.Item onClick={() => navigation.navigate('Login')}>
-                <Text style={styles.button}>Login</Text>
-            </Nav.Item>
-            <Nav.Item onClick={() => navigation.navigate('OrdemServiço')}>
-                <Text style={styles.button}>Ordem Serviço</Text>
-            </Nav.Item>
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+    <View style={styles.container}>
+      <StatusBar barStyle="light-content" />
+      <Appbar.Header style={styles.navbar}>
+        <Image onPress={() => navigation.navigate('Home')} source={require('../assets/logo.png')} style={{ width: 45, height: 45 }}/>
+        <Appbar.Content
+          title="INFORRATICA" color="white"
+          onPress={() => navigation.navigate('Home')}
+        />
+        <Appbar.Action icon="account" onPress={() => navigation.navigate('Login')}/>
+        <Menu
+          visible={visible}
+          onDismiss={closeMenu}
+          anchor={
+            <Appbar.Action icon="dots-vertical" onPress={openMenu} />
+          }>
+          <Menu.Item onPress={() => navigation.navigate('OrdemServiço')} title="Ordens de servico" />
+          <Menu.Item onPress={() => navigation.navigate('Home')} title="Sobre" />
+        </Menu>
+        <LinearGradient
+          colors={['red', 'green', 'blue']}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 0 }}
+          style={{ flex: 1, position: 'absolute', left: 0, right: 0, top: 60, height: 5 }}
+        />
+      </Appbar.Header>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-    button: {
-        color: 'white',
-    }
+  container: {
+    flex: 1,
+    backgroundColor: 'red',
+  },
+  navbar: {
+    backgroundColor: '#212224',
+    color: 'white',
+  },
+  title: {
+    color: 'white',
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
 });
 
 export default Header;

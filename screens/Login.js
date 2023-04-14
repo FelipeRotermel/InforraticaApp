@@ -4,6 +4,7 @@ import { StyleSheet, Text, View } from 'react-native';
 export default function Login() {
   return (
     <View style={styles.container}>
+      <StatusBar barStyle="light-content" />
       <Text>Login</Text>
       <StatusBar style="auto" />
     </View>

@@ -4,6 +4,7 @@ import { StyleSheet, Text, View } from 'react-native';
 export default function OrdemServico() {
   return (
     <View style={styles.container}>
+      <StatusBar barStyle="light-content" />
       <Text>Ordem Serviço</Text>
       <StatusBar style="auto" />
     </View>
