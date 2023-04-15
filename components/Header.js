@@ -1,5 +1,4 @@
 import React from 'react';
-import { StatusBar } from 'expo-status-bar';
 import { Appbar, Menu } from 'react-native-paper';
 import { StyleSheet, Image, View } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -13,19 +12,18 @@ function Header({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <StatusBar barStyle="light-content" />
       <Appbar.Header style={styles.navbar}>
         <Image onPress={() => navigation.navigate('Home')} source={require('../assets/logo.png')} style={{ width: 45, height: 45 }}/>
         <Appbar.Content
           title="INFORRATICA" color="white"
           onPress={() => navigation.navigate('Home')}
         />
-        <Appbar.Action icon="account" onPress={() => navigation.navigate('Login')}/>
+        <Appbar.Action style={styles.colors} icon="account" color='white' onPress={() => navigation.navigate('Login')}/>
         <Menu
           visible={visible}
           onDismiss={closeMenu}
           anchor={
-            <Appbar.Action icon="dots-vertical" onPress={openMenu} />
+            <Appbar.Action icon="dots-vertical" color="white" onPress={openMenu} />
           }>
           <Menu.Item onPress={() => navigation.navigate('OrdemServiço')} title="Ordens de servico" />
           <Menu.Item onPress={() => navigation.navigate('Home')} title="Sobre" />
@@ -45,6 +43,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'red',
+  },
+  colors: {
+    color: '#FFF',
   },
   navbar: {
     backgroundColor: '#212224',
