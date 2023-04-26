@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, Image } from 'react-native';
 import { Button } from 'react-native-paper';
 import { ScrollView } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
+import Footer from '../components/Footer';
 
 
 export default function Home() {
@@ -44,7 +45,7 @@ export default function Home() {
         <Image style={styles.logo} source={require('../assets/logos/toshiba.png')}></Image>
         </ScrollView>
       </View>
-      <View>
+      <View style={styles.container4}>
         <Text style={styles.title3}>Seu computador parou de funcionar?</Text>
         <Text style={styles.text2}>
           Consertamos computadores e notebooks de diversas marcas como Apple, Dell, HP, Sony, Acer, Lenovo, Asus, Toshiba, Samsung    entre outras! Nossos técnicos são profissionais experientes na solução dos mais diversos problemas de hardware.
@@ -54,10 +55,8 @@ export default function Home() {
           Nossos serviços também englobam a formatação e reinstalação de sistemas operacionais, recuperação de dados, limpeza interna e externa, troca de peças e componentes, instalação de programas e aplicativos, remoção de vírus e malwares, entre outros.
         </Text>
       </View>
-      <View style={styles.footer}>
-      </View>
-      <View style={styles.footer2}></View>
     </View>
+    <Footer />
     </ScrollView>
   );
 }
@@ -80,6 +79,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
   },
+  container4: {
+    paddingBottom: 100,
+  },
   scroll: {
     backgroundColor: '#FFF',
     shadowColor: "#000",
@@ -98,6 +100,11 @@ const styles = StyleSheet.create({
     marginTop: '15%',
     width: 300,
     height: 200,
+  },
+  imagemlogo: {
+    position: "absolute",
+    width: 50,
+    height: 50,
   },
   logo: {
     width: 80,
@@ -191,19 +198,5 @@ const styles = StyleSheet.create({
     borderColor: '#FFF',
     marginLeft: '-5%',
     zIndex: -1,
-  },
-  footer: {
-    width: '130%',
-    marginLeft: '-15%',
-    marginTop: '25%',
-    height: 100,
-    backgroundColor: 'green',
-    transform: [{ rotate: "30deg" }],
-  },
-  footer2: {
-    width: '100%',
-    marginTop: '25%',
-    height: 100,
-    backgroundColor: 'green',
   },
 });
