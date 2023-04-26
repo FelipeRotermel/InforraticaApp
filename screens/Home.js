@@ -5,7 +5,6 @@ import { ScrollView } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import Footer from '../components/Footer';
 
-
 export default function Home() {
   return (
     <ScrollView>
@@ -34,16 +33,12 @@ export default function Home() {
         <Text style={styles.title2}>Trabalhamos com:</Text>
       </View>
       <View style={styles.container3}>
-        <ScrollView horizontal pagingEnabled style={styles.scroll}>
         <Image style={styles.logo} source={require('../assets/logos/hp.png')}></Image>
         <Image style={styles.logo} source={require('../assets/logos/asus.png')}></Image>
         <Image style={styles.logo} source={require('../assets/logos/dell.png')}></Image>
         <Image style={styles.logo} source={require('../assets/logos/sony.png')}></Image>
         <Image style={styles.logo} source={require('../assets/logos/apple.png')}></Image>
-        <Image style={styles.logo} source={require('../assets/logos/acer.png')}></Image>
-        <Image style={styles.logo} source={require('../assets/logos/lenovo.png')}></Image>
-        <Image style={styles.logo} source={require('../assets/logos/toshiba.png')}></Image>
-        </ScrollView>
+        <Text>...</Text>
       </View>
       <View style={styles.container4}>
         <Text style={styles.title3}>Seu computador parou de funcionar?</Text>
@@ -74,6 +69,7 @@ const styles = StyleSheet.create({
   },
   container3: {
     flex: 1,
+    backgroundColor: '#FFF',
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'row',
@@ -137,6 +133,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
     color: '#FFF',
+    marginTop: '5%',
     marginLeft: '5%',
     width: '70%',
   },
