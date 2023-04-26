@@ -4,9 +4,9 @@ export default function Footer() {
   return (
     <View style={styles.container}>
         <Image style={styles.fundo} source={require('../assets/footer.png')} />
-        <View>
-            <Text>Footer</Text>
-            <Image style={styles.logo} source={require('../assets/logo.png')}></Image>
+        <Text>Footer</Text>
+        <View style={styles.logofundo}>
+            <Image style={styles.logo} source={require('../assets/logo.png')} />
         </View>
     </View>
   );
@@ -17,16 +17,24 @@ const styles = StyleSheet.create({
         flex: 'none',
         backgroundColor: '#fff',
         alignItems: 'center',
+        height: 500,
     },
     fundo: {
+        position: 'absolute',
         marginTop: '-3%',
         width: 600,
-        height: 600,
+        height: 170,
     },
-    logo: {
-        position: "absolute",
+    logofundo: {
         width: 100,
         height: 100,
-        marginTop: '-100%',
+        backgroundColor: '#3b3c3d',
+        borderRadius: 20,
+        marginLeft: '-60%',
+        marginTop: '-10%',
+    },
+    logo: {
+        width: 100,
+        height: 100,
     },
 });
