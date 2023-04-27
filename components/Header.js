@@ -4,10 +4,9 @@ import { StyleSheet, Image, View } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 
 function Header({ navigation }) {
+
   const [visible, setVisible] = React.useState(false);
-
   const openMenu = () => setVisible(true);
-
   const closeMenu = () => setVisible(false);
 
   return (
@@ -18,7 +17,8 @@ function Header({ navigation }) {
           title="INFORRATICA" color="white"
           onPress={() => navigation.navigate('Home')}
         />
-        <Appbar.Action style={styles.colors} icon="account" color='white' onPress={() => navigation.navigate('Login')}/>
+        <Appbar.Action style={styles.colors} icon="account" color='white' 
+          onPress={() => navigation.navigate('Login')}/>
         <Menu
           visible={visible}
           onDismiss={closeMenu}

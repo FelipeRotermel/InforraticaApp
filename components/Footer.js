@@ -26,7 +26,7 @@ export default function Footer() {
             <Button icon="instagram" textColor='white' style={styles.button}>Instagram</Button>
         </View>
         <View style={styles.container4}>
-            <Text style={styles.text3}>© 2021 Inforratica. Todos os direitos reservados.</Text>
+            <Text style={styles.text3}>© 2023 Inforratica. Todos os direitos reservados.</Text>
         </View>
     </View>
   );
@@ -36,7 +36,6 @@ const styles = StyleSheet.create({
     container: {
         backgroundColor: '#fff',
         alignItems: 'center',
-        height: '100%',
     },
     container2: {
         alignItems: 'flex-start',

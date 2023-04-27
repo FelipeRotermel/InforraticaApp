@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
   },
   container4: {
-    paddingBottom: 100,
+    paddingBottom: 90,
   },
   scroll: {
     backgroundColor: '#FFF',

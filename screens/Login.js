@@ -1,6 +1,6 @@
 
 import React, { useState } from "react";
-import {StyleSheet, Text, View, Image, TextInput, Button, TouchableOpacity} from "react-native";
+import {StyleSheet, Text, View, Image, TextInput, TouchableOpacity} from "react-native";
 import { LinearGradient } from 'expo-linear-gradient';
 
 export default function App() {
@@ -15,7 +15,7 @@ export default function App() {
           colors={['#212224', '#3b3c3d']}
           start={{ x: 0, y: 0 }}
           end={{ x: 0, y: 1 }}
-          style={{ flex: 1, position: 'absolute', left: 0, right: 0, top: 0, height: '100%' }}
+          style={{ flex: 1, position: 'absolute', left: 0, right: 0, top: 0, height: '100%', zIndex: -1 }}
         />
         <TextInput
           style={styles.TextInput}
