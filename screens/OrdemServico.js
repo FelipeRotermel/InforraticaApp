@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, LayoutAnimation } from 'react-native';
+import { StyleSheet, Text, View, LayoutAnimation, TouchableOpacity } from 'react-native';
 import { Card, Button } from 'react-native-paper';
 import { LinearGradient } from 'expo-linear-gradient';
 
@@ -22,15 +22,32 @@ export default function OrdemServico() {
       <Card style={styles.card} onPress={handlePress} expanded={expanded}>
         <Card.Cover style={styles.image} source={{ uri: 'https://www.tech-stallion.com/assets/examples/mid.jpg' }} />
         <Card.Content>
-          <Text style={styles.title}>Computador</Text>
+          <Text style={styles.title}>Seu Computador</Text>
           <View style={[styles.cardContent, { height: expanded ? null : 0, overflow: 'hidden' }]}>
             <Text style={styles.textContent}>Placa mãe</Text>
-            <Text style={styles.textContent}>Placa mãe</Text>
-            <Text style={styles.textContent}>Placa mãe</Text>
-            <Text style={styles.textContent}>Placa mãe</Text>
-            <Text style={styles.textContent}>Placa mãe</Text>
-            <Text style={styles.textContent}>Placa mãe</Text>
+            
           </View>
+          <TouchableOpacity style={styles.bottomThing}>
+            <Text style={styles.content}>Ver mais</Text>
+          </TouchableOpacity>
+        </Card.Content>
+      </Card>
+
+      <Card style={styles.card}>
+        <Card.Cover style={styles.image} source={{ uri: 'https://www.tech-stallion.com/assets/examples/mid.jpg' }} />
+        <Card.Content>
+          <Text style={styles.title}>Nome do PC</Text>
+          <View style={[styles.cardContent,]}>
+            <Text style={styles.textContent}>Peças do pc</Text>
+            <Text style={styles.textContent}>Peças que serão trocadas</Text>
+            <Text style={styles.textContent}>Data de entrada / Data de retirada</Text>
+            <Text style={styles.textContent}>Valor do orçamento</Text>
+          </View>
+          <TouchableOpacity style={styles.bottomThing}>
+            <Text style={styles.content}>Ver mais</Text>
+            <Text style={styles.content}>Estado</Text>
+          </TouchableOpacity>
+          
         </Card.Content>
       </Card>
     </View>
@@ -40,14 +57,15 @@ export default function OrdemServico() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    flexDirection: 'row',
+    justifyContent: 'space-between'
   },
   card: {
-    width: '80%',
+    width: '47%',
     height: '40%',
     borderRadius: 10,
     backgroundColor: '#fff',
+    marginTop: '15%',
   },
   image: {
     resizeMode: 'stretch',
@@ -58,9 +76,9 @@ const styles = StyleSheet.create({
   },
   cardContent: {
     backgroundColor: '#fff',
-    flexDirection: 'row',
     height: 'auto',
     width: '100%',
+    marginTop: 10,
   },
   content: {
     fontSize: 15,
@@ -69,4 +87,9 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: 'bold',
   },
+  bottomThing: {
+    top: '60%',
+    flexDirection: 'row',
+  },
+ 
 });
