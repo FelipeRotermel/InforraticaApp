@@ -1,5 +1,6 @@
 
 import React, { useState } from "react";
+import { MaterialIcons } from '@expo/vector-icons';
 import {StyleSheet, Text, View, Image, TextInput, TouchableOpacity} from "react-native";
 import { LinearGradient } from 'expo-linear-gradient';
 
@@ -7,6 +8,7 @@ export default function App() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   return (
     <View style={styles.container}>
@@ -25,12 +27,25 @@ export default function App() {
         <TextInput
           style={styles.TextInput}
           placeholder="Senha"
-          secureTextEntry={true}
-          onChangeText={(password) => setPassword(password)}
+          secureTextEntry={!showPassword}
+          value={password}
+          onChangeText={(text) => setPassword(text)}
         /> 
-      <TouchableOpacity style={styles.loginBtn}>
-       <Text style={styles.loginText}>LOGIN</Text> 
-      </TouchableOpacity> 
+        <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
+          <MaterialIcons
+            name={showPassword ? 'visibility' : 'visibility-off'}
+            size={24}
+            color="grey"
+        />
+        </TouchableOpacity>
+
+        <TouchableOpacity>
+          <Text style={styles.forgot_button}>Esqueceu a senha?</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.loginBtn}>
+          <Text style={styles.loginText}>LOGIN</Text> 
+        </TouchableOpacity> 
     </View> 
   );
 }
@@ -39,8 +54,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    justifyContent: "center",
     textAlign: "center",
+    marginTop: 50,
   },
   TextInput: {
     backgroundColor: "#fff",
@@ -51,7 +66,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   loginBtn: {
-    width: "80%",
+    width: "40%",
     borderRadius: 25,
     height: 50,
     alignItems: "center",
@@ -63,6 +78,9 @@ const styles = StyleSheet.create({
     width: 300,
     height: 300,
     zIndex: 1,
+  },
+  forgot_button: {
+    color: "#1d4ef0",
   },
 });
 

@@ -19,6 +19,9 @@ function Header({ navigation }) {
         />
         <Appbar.Action style={styles.colors} icon="account" color='white' 
           onPress={() => navigation.navigate('Login')}/>
+          
+        <Appbar.Action style={styles.colors} icon="pc" color='white' 
+          onPress={() => navigation.navigate('OrdemServiço')}/>
         <Menu
           visible={visible}
           onDismiss={closeMenu}
