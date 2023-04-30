@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, LayoutAnimation, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, LayoutAnimation } from 'react-native';
 import { Card, Button } from 'react-native-paper';
 import { LinearGradient } from 'expo-linear-gradient';
 
@@ -21,34 +21,32 @@ export default function OrdemServico() {
         />
       <Card style={styles.card} onPress={handlePress} expanded={expanded}>
         <Card.Cover style={styles.image} source={{ uri: 'https://www.tech-stallion.com/assets/examples/mid.jpg' }} />
-        <Card.Content>
-          <Text style={styles.title}>Seu Computador</Text>
+        <View style={styles.cardText}>
+          <View style={styles.cardInfo}>
+            <Text style={styles.title}>Aigo DarkFlash</Text>
+            <Text style={styles.status}>Aguardando peça</Text>
+          </View>
           <View style={[styles.cardContent, { height: expanded ? null : 0, overflow: 'hidden' }]}>
-            <Text style={styles.textContent}>Placa mãe</Text>
-            
+            <Text style={styles.textContent}>Placa mãe:
+              <Text style={styles.internTextContent}> MSI H310M Pro-VDH Plus</Text>
+            </Text>
+            <Text style={styles.textContent}>Processador:
+              <Text style={styles.internTextContent}> Intel Core i5-9400F</Text>
+            </Text>
+            <Text style={styles.textContent}>Memória RAM:
+              <Text style={styles.internTextContent}> 2x Kingston HyperX Fury 8GB 2666MHz DDR4</Text>
+            </Text>
+            <Text style={styles.textContent}>Placa de vídeo:
+              <Text style={styles.internTextContent}> MSI GeForce GTX 1660 Ti Gaming X 6GB</Text>
+            </Text>
+            <Text style={styles.textContent}>Armazenamento:
+              <Text style={styles.internTextContent}> SSD Kingston A400 240GB</Text>
+            </Text>
+            <Text style={styles.textContent}>Fonte:
+              <Text style={styles.internTextContent}> Corsair CX550 550W 80 Plus Bronze</Text>
+            </Text>
           </View>
-          <TouchableOpacity style={styles.bottomThing}>
-            <Text style={styles.content}>Ver mais</Text>
-          </TouchableOpacity>
-        </Card.Content>
-      </Card>
-
-      <Card style={styles.card}>
-        <Card.Cover style={styles.image} source={{ uri: 'https://www.tech-stallion.com/assets/examples/mid.jpg' }} />
-        <Card.Content>
-          <Text style={styles.title}>Nome do PC</Text>
-          <View style={[styles.cardContent,]}>
-            <Text style={styles.textContent}>Peças do pc</Text>
-            <Text style={styles.textContent}>Peças que serão trocadas</Text>
-            <Text style={styles.textContent}>Data de entrada / Data de retirada</Text>
-            <Text style={styles.textContent}>Valor do orçamento</Text>
-          </View>
-          <TouchableOpacity style={styles.bottomThing}>
-            <Text style={styles.content}>Ver mais</Text>
-            <Text style={styles.content}>Estado</Text>
-          </TouchableOpacity>
-          
-        </Card.Content>
+        </View>
       </Card>
     </View>
   );
@@ -57,15 +55,15 @@ export default function OrdemServico() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-between'
+    backgroundColor: '#fff',
+    alignItems: 'center',
   },
   card: {
-    width: '47%',
+    width: '90%',
     height: '40%',
+    marginTop: 20,
     borderRadius: 10,
     backgroundColor: '#fff',
-    marginTop: '15%',
   },
   image: {
     resizeMode: 'stretch',
@@ -74,11 +72,27 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
   },
+  status: {
+    marginTop: 5,
+    fontSize: 15,
+    color: '#ff0000',
+  },
+  cardText: {
+    backgroundColor: '#fff',
+    borderRadius: 10,
+    padding: 10,
+  },
+  cardInfo: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 10,
+  },
   cardContent: {
     backgroundColor: '#fff',
+    flexDirection: 'column',
     height: 'auto',
     width: '100%',
-    marginTop: 10,
   },
   content: {
     fontSize: 15,
@@ -87,9 +101,7 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: 'bold',
   },
-  bottomThing: {
-    top: '60%',
-    flexDirection: 'row',
+  internTextContent: {
+    fontWeight: 'normal',
   },
- 
 });

@@ -24,21 +24,23 @@ export default function App() {
           placeholder="Email"
           onChangeText={(email) => setEmail(email)}
         /> 
-        <TextInput
-          style={styles.TextInput}
-          placeholder="Senha"
-          secureTextEntry={!showPassword}
-          value={password}
-          onChangeText={(text) => setPassword(text)}
-        /> 
-        <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
-          <MaterialIcons
-            name={showPassword ? 'visibility' : 'visibility-off'}
-            size={24}
-            color="grey"
-        />
-        </TouchableOpacity>
-
+        <View style={styles.inputContainer}>
+          <TextInput
+            style={styles.TextInputPassword}
+            placeholder="Senha"
+            secureTextEntry={!showPassword}
+            value={password}
+            onChangeText={(text) => setPassword(text)}
+          />
+          <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
+            <MaterialIcons
+              style={styles.showPassword}
+              name={showPassword ? 'visibility' : 'visibility-off'}
+              size={24}
+              color="grey"
+            />
+          </TouchableOpacity>
+        </View>
         <TouchableOpacity>
           <Text style={styles.forgot_button}>Esqueceu a senha?</Text>
         </TouchableOpacity>
@@ -55,7 +57,16 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     textAlign: "center",
-    marginTop: 50,
+  },
+  inputContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '70%',
+    height: '7%',
+    backgroundColor: '#fff',
+    borderRadius: 30,
+    marginBottom: 20,
   },
   TextInput: {
     backgroundColor: "#fff",
@@ -65,6 +76,12 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     textAlign: "center",
   },
+  TextInputPassword: {
+    width: "100%",
+    height: '100%',
+    textAlign: "center",
+    borderRadius: 30,
+  },
   loginBtn: {
     width: "40%",
     borderRadius: 25,
@@ -73,6 +90,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     marginTop: 40,
     backgroundColor: "#fff",
+  },
+  showPassword: {
+    position: 'absolute',
+    right: 10,
+    top: -12,
   },
   logo: {
     width: 300,

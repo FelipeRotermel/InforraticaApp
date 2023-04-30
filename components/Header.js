@@ -17,19 +17,14 @@ function Header({ navigation }) {
           title="INFORRATICA" color="white"
           onPress={() => navigation.navigate('Home')}
         />
-        <Appbar.Action style={styles.colors} icon="account" color='white' 
-          onPress={() => navigation.navigate('Login')}/>
-          
-        <Appbar.Action style={styles.colors} icon="pc" color='white' 
-          onPress={() => navigation.navigate('OrdemServiço')}/>
         <Menu
           visible={visible}
           onDismiss={closeMenu}
           anchor={
             <Appbar.Action icon="dots-vertical" color="white" onPress={openMenu} />
           }>
-          <Menu.Item onPress={() => navigation.navigate('OrdemServiço')} title="Ordens de servico" />
-          <Menu.Item onPress={() => navigation.navigate('Home')} title="Sobre" />
+          <Menu.Item onPress={() => navigation.navigate('Login')} title="Login" />
+          <Menu.Item onPress={() => navigation.navigate('OrdemServiço')} title="Ordem de Serviços" />
         </Menu>
         <LinearGradient
           colors={['red', 'green', 'blue']}
