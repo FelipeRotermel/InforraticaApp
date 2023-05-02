@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, LayoutAnimation } from 'react-native';
+import { StyleSheet, Text, View, LayoutAnimation, ScrollView } from 'react-native';
 import { Card, Button } from 'react-native-paper';
 import { LinearGradient } from 'expo-linear-gradient';
 
@@ -12,6 +12,7 @@ export default function OrdemServico() {
   };
 
   return (
+    <ScrollView>
     <View style={styles.container}>
       <LinearGradient
           colors={['#212224', '#3b3c3d']}
@@ -49,6 +50,7 @@ export default function OrdemServico() {
         </View>
       </Card>
     </View>
+    </ScrollView>
   );
 }
 
@@ -56,12 +58,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
+    alignItems: "center",
   },
   card: {
     width: '90%',
-    height: '40%',
-    marginTop: 20,
+    height: 'auto',
+    marginTop: '20%',
     borderRadius: 10,
     backgroundColor: '#fff',
   },

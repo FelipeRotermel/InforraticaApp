@@ -1,7 +1,6 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, ScrollView } from 'react-native';
 import { Button } from 'react-native-paper';
-import { ScrollView } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import Footer from '../components/Footer';
 
