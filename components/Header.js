@@ -23,6 +23,7 @@ function Header({ navigation }) {
           anchor={
             <Appbar.Action icon="dots-vertical" color="white" onPress={openMenu} />
           }>
+          <Menu.Item onPress={() => navigation.navigate('Home')} title="Home" />
           <Menu.Item onPress={() => navigation.navigate('Login')} title="Login" />
           <Menu.Item onPress={() => navigation.navigate('OrdemServiço')} title="Ordem de Serviços" />
         </Menu>

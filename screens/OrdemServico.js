@@ -12,7 +12,7 @@ export default function OrdemServico() {
   };
 
   return (
-    <ScrollView>
+    <ScrollView style={styles.ScrollView}>
     <View style={styles.container}>
       <LinearGradient
           colors={['#212224', '#3b3c3d']}
@@ -49,6 +49,35 @@ export default function OrdemServico() {
           </View>
         </View>
       </Card>
+      <Card style={styles.card} onPress={handlePress} expanded={expanded}>
+        <Card.Cover style={styles.image} source={{ uri: 'https://www.tech-stallion.com/assets/examples/budget.jpg' }} />
+        <View style={styles.cardText}>
+          <View style={styles.cardInfo}>
+            <Text style={styles.title}>NZXT H210i</Text>
+            <Text style={styles.status}>Aguardando peça</Text>
+          </View>
+          <View style={[styles.cardContent, { height: expanded ? null : 0, overflow: 'hidden' }]}>
+            <Text style={styles.textContent}>Placa mãe:
+              <Text style={styles.internTextContent}> MSI B550 MAG</Text>
+            </Text>
+            <Text style={styles.textContent}>Processador:
+              <Text style={styles.internTextContent}> Ryzen 5 5600X</Text>
+            </Text>
+            <Text style={styles.textContent}>Memória RAM:
+              <Text style={styles.internTextContent}> 2x Corsair Vengeance Pro 16gb 3200Mhz</Text>
+            </Text>
+            <Text style={styles.textContent}>Placa de vídeo:
+              <Text style={styles.internTextContent}> Palit RTX 3060 Ti</Text>
+            </Text>
+            <Text style={styles.textContent}>Armazenamento:
+              <Text style={styles.internTextContent}> Sabrent Rocket 1TB NVMe M.2</Text>
+            </Text>
+            <Text style={styles.textContent}>Fonte:
+              <Text style={styles.internTextContent}> Corsair TX750M</Text>
+            </Text>
+          </View>
+        </View>
+      </Card>
     </View>
     </ScrollView>
   );
@@ -60,11 +89,16 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: "center",
   },
+  ScrollView: {
+    flex: 1,
+    backgroundColor: '#3b3c3d',
+    height: '100%',
+  },
   card: {
     width: '90%',
     height: 'auto',
     marginTop: '20%',
-    borderRadius: 10,
+    borderRadius: 13,
     backgroundColor: '#fff',
   },
   image: {

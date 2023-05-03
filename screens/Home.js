@@ -17,21 +17,13 @@ export default function Home() {
       <Text style={styles.title}>Assistência técnica especializada em notebooks e computadores.</Text>
       <Text style={styles.text}>Aqui você encontra o melhor atendimento e o melhor preço.</Text>
       <Button icon="map" mode="contained" style={styles.button}><Text style={styles.colors}>Conheça-nos pessoalmente!</Text></Button>
-      <View style={styles.container2}>
-        <View style={styles.desenho}>
-          <LinearGradient
-          colors={['#03004f', '#0800eb']}
-          start={{ x: 0, y: 1 }}
-          end={{ x: 1, y: -1 }}
-          style={{ flex: 1, borderRadius: 15}}
-          />
-        </View>
-        <View style={styles.desenho2}></View>
-        <View style={styles.desenho3}></View>
-        <Image style={styles.imagem} source={require('../assets/notebook.png')}></Image>
-        <Text style={styles.title2}>Trabalhamos com:</Text>
+      <View style={styles.containerWithImage}>
+        <View style={styles.designRight}></View>
+        <View style={styles.designLeft}></View>
+        <Image style={styles.image} source={require('../assets/notebook.png')}></Image>
+        <Text style={styles.subTitle}>Trabalhamos com:</Text>
       </View>
-      <View style={styles.container3}>
+      <View style={styles.containerWithLogos}>
         <Image style={styles.logo} source={require('../assets/logos/hp.png')}></Image>
         <Image style={styles.logo} source={require('../assets/logos/asus.png')}></Image>
         <Image style={styles.logo} source={require('../assets/logos/dell.png')}></Image>
@@ -39,13 +31,13 @@ export default function Home() {
         <Image style={styles.logo} source={require('../assets/logos/apple.png')}></Image>
         <Text>...</Text>
       </View>
-      <View style={styles.container4}>
-        <Text style={styles.title3}>Seu computador parou de funcionar?</Text>
-        <Text style={styles.text2}>
+      <View style={styles.containerWithText}>
+        <Text style={styles.subTitle2}>Seu computador parou de funcionar?</Text>
+        <Text style={styles.subText}>
           Consertamos computadores e notebooks de diversas marcas como Apple, Dell, HP, Sony, Acer, Lenovo, Asus, Toshiba, Samsung    entre outras! Nossos técnicos são profissionais experientes na solução dos mais diversos problemas de hardware.
         </Text>
-        <Text style={styles.title3}>Além disso!</Text>
-        <Text style={styles.text2}>
+        <Text style={styles.subTitle2}>Além disso!</Text>
+        <Text style={styles.subText}>
           Nossos serviços também englobam a formatação e reinstalação de sistemas operacionais, recuperação de dados, limpeza interna e externa, troca de peças e componentes, instalação de programas e aplicativos, remoção de vírus e malwares, entre outros.
         </Text>
       </View>
@@ -61,12 +53,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#212224',
     justifyContent: 'center',
   },
-  container2: {
+  containerWithImage: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
-  container3: {
+  containerWithLogos: {
     flex: 1,
     backgroundColor: '#FFF',
     alignItems: 'center',
@@ -74,7 +66,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
   },
-  container4: {
+  containerWithText: {
     paddingBottom: 90,
   },
   scroll: {
@@ -91,21 +83,16 @@ const styles = StyleSheet.create({
   colors: {
     color: '#FFF',
   },
-  imagem: {
+  image: {
     marginTop: '15%',
     width: 300,
     height: 200,
   },
-  imagemlogo: {
-    position: "absolute",
-    width: 50,
-    height: 50,
-  },
   logo: {
     width: 80,
     height: 80,
-    marginLeft: 10,
-    marginRight: 10,
+    marginLeft: 5,
+    marginRight: 5,
   },
   title: {
     position: 'relative',
@@ -119,7 +106,7 @@ const styles = StyleSheet.create({
     textShadowOffset: {width: -1, height: 1},
     textShadowRadius: 10
   },
-  title2: {
+  subTitle: {
     fontSize: 30,
     fontWeight: 'bold',
     color: '#FFF',
@@ -128,7 +115,7 @@ const styles = StyleSheet.create({
     textShadowOffset: {width: -1, height: 1},
     textShadowRadius: 10
   },
-  title3: {
+  subTitle2: {
     fontSize: 20,
     fontWeight: 'bold',
     color: '#FFF',
@@ -145,7 +132,7 @@ const styles = StyleSheet.create({
     marginLeft: '8%',
     width: '50%',
   },
-  text2: {
+  subText: {
     fontSize: 20,
     color: '#FFF',
     marginLeft: '5%',
@@ -164,35 +151,28 @@ const styles = StyleSheet.create({
     textShadowOffset: {width: -1, height: 1},
     textShadowRadius: 10
   },
-  desenho: {
+  designRight: {
     position: 'absolute',
-    width: 300,
-    height: 150,
-    backgroundColor: 'rgba(94, 0, 200, 1)',
-    borderRadius: 15,
-    marginTop: '5%',
+    width: '40%',
+    height: '55%',
+    backgroundColor: 'transparent',
+    borderColor: '#FFF',
+    borderWidth: 2,
+    borderRadius: 13,
+    right: -10,
+    top: '22%',
     zIndex: -1,
   },
-  desenho2: {
+  designLeft: {
     position: 'absolute',
-    width: 300,
-    height: 150,
-    backgroundColor: 'rgba(0, 0, 0, 0)',
-    borderWidth: 3,
-    borderRadius: 15,
-    marginTop: '10%',
-    marginLeft: '5%',
-    zIndex: -2,
-  },
-  desenho3: {
-    position: 'absolute',
-    width: 300,
-    height: 150,
-    backgroundColor: 'rgba(155, 0, 0, 0)',
-    borderWidth: 3,
-    borderRadius: 15,
+    width: '40%',
+    height: '55%',
+    backgroundColor: 'transparent',
     borderColor: '#FFF',
-    marginLeft: '-5%',
+    borderWidth: 2,
+    borderRadius: 13,
+    left: -10,
+    top: '22%',
     zIndex: -1,
   },
 });

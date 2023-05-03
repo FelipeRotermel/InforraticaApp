@@ -42,11 +42,11 @@ export default function App() {
           </TouchableOpacity>
         </View>
         <TouchableOpacity>
-          <Text style={styles.forgot_button}>Esqueceu a senha?</Text>
+          <Text style={styles.forgotButton}>Esqueceu a senha?</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.loginBtn}>
-          <Text style={styles.loginText}>LOGIN</Text> 
+        <TouchableOpacity style={styles.loginButton}>
+          <Text style={styles.loginText}>LOGIN</Text>
         </TouchableOpacity> 
     </View> 
   );
@@ -76,14 +76,28 @@ const styles = StyleSheet.create({
     height: '7%',
     marginBottom: 20,
     textAlign: "center",
+    shadowOffset: {
+	    width: 0,
+	    height: 12,
+    },
+    shadowOpacity: 0.58,
+    shadowRadius: 16.00,
+    elevation: 24,
   },
   TextInputPassword: {
     width: "100%",
     height: '100%',
     textAlign: "center",
     borderRadius: 30,
+    shadowOffset: {
+	    width: 0,
+	    height: 12,
+    },
+    shadowOpacity: 0.58,
+    shadowRadius: 16.00,
+    elevation: 24,
   },
-  loginBtn: {
+  loginButton: {
     width: "40%",
     borderRadius: 25,
     height: 50,
@@ -101,8 +115,15 @@ const styles = StyleSheet.create({
     width: 300,
     height: 300,
     zIndex: 1,
+    shadowOffset: {
+	    width: 0,
+	    height: 12,
+    },
+    shadowOpacity: 0.58,
+    shadowRadius: 16.00,
+    elevation: 24,
   },
-  forgot_button: {
+  forgotButton: {
     color: "#1d4ef0",
   },
 });
