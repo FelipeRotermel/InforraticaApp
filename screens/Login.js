@@ -68,6 +68,13 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderRadius: 30,
     marginBottom: 20,
+    shadowOffset: {
+	    width: 0,
+	    height: 12,
+    },
+    shadowOpacity: 0.58,
+    shadowRadius: 16.00,
+    elevation: 24,
   },
   TextInput: {
     backgroundColor: "#fff",
@@ -89,13 +96,6 @@ const styles = StyleSheet.create({
     height: '100%',
     textAlign: "center",
     borderRadius: 30,
-    shadowOffset: {
-	    width: 0,
-	    height: 12,
-    },
-    shadowOpacity: 0.58,
-    shadowRadius: 16.00,
-    elevation: 24,
   },
   loginButton: {
     width: "40%",
@@ -121,7 +121,6 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.58,
     shadowRadius: 16.00,
-    elevation: 24,
   },
   forgotButton: {
     color: "#1d4ef0",

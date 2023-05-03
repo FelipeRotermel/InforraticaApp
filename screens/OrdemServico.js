@@ -103,6 +103,7 @@ const styles = StyleSheet.create({
   },
   image: {
     resizeMode: 'stretch',
+    height: 300,
   },
   title: {
     fontSize: 20,
