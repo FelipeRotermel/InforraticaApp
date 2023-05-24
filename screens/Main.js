@@ -6,7 +6,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Provider as PaperProvider } from 'react-native-paper';
 import { ScrollView, StatusBar } from 'react-native';
 
-import { userState } from '/recoil/atoms/auth';
+import { userState } from '/recoil/atoms/auth'; //ERRO AKI
 
 import LoginScreen from '/screens/Login';
 import OrdemServico from '/screens/OrdemServico';
