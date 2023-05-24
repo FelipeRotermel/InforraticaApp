@@ -1,14 +1,47 @@
+import * as SecureStore from 'expo-secure-store';
 
+import { useSetRecoilState } from 'recoil';
 import React, { useState } from "react";
+import { Platform } from "react-native";
 import { MaterialIcons } from '@expo/vector-icons';
 import {StyleSheet, Text, View, Image, TextInput, TouchableOpacity} from "react-native";
 import { LinearGradient } from 'expo-linear-gradient';
 
-export default function App() {
+import { userState } from '/recoil/atoms/auth';
+import LoginApi from '/api/login';
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+const loginApi = new LoginApi();
+
+export default function LoginScreen() {
+
+  const setUser = useSetRecoilState(userState);
+
+  const [username, setUsername] = React.useState('admin');
+  const [password, setPassword] = React.useState('admin');
   const [showPassword, setShowPassword] = useState(false);
+  const [errorMsg, setErrorMsg] = React.useState(null);
+  
+
+  const login = async () => {
+    try {
+      const data = await loginApi.login(username, password);
+      setUser({
+        loggedIn: true,
+        access_token: data.access_token,
+        refresh_token: data.refresh_token,
+      });
+      if (Platform.OS !== 'web') {
+        await SecureStore.setItemAsync('access_token', data.access_token);
+      }
+    } catch (error) {
+      setUser({ loggedIn: false, access_token: null, refresh_token: null });
+      setErrorMsg('Usuário ou senha inválidos!');
+      if (Platform.OS !== 'web') {
+        await SecureStore.deleteItemAsync('access_token');
+      }
+    }
+  };
+
 
   return (
     <View style={styles.container}>
@@ -21,8 +54,8 @@ export default function App() {
         />
         <TextInput
           style={styles.TextInput}
-          placeholder="Email"
-          onChangeText={(email) => setEmail(email)}
+          placeholder="username"
+          onChangeText={setUsername}
         /> 
         <View style={styles.inputContainer}>
           <TextInput
@@ -30,7 +63,7 @@ export default function App() {
             placeholder="Senha"
             secureTextEntry={!showPassword}
             value={password}
-            onChangeText={(text) => setPassword(text)}
+            onChangeText={setPassword}
           />
           <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
             <MaterialIcons
@@ -46,8 +79,9 @@ export default function App() {
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.loginButton}>
-          <Text style={styles.loginText}>LOGIN</Text>
+          <Text style={styles.loginText} onPress={() => login()}>LOGIN</Text>
         </TouchableOpacity> 
+        <Text>{errorMsg}</Text>
     </View> 
   );
 }
