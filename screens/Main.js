@@ -6,12 +6,12 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Provider as PaperProvider } from 'react-native-paper';
 import { ScrollView, StatusBar } from 'react-native';
 
-import { userState } from '/recoil/atoms/auth'; //ERRO AKI
+import { userState } from '../recoil/atoms/auth'; 
 
-import LoginScreen from '/screens/Login';
-import OrdemServico from '/screens/OrdemServico';
-import Header from '/components/Header';
-import Home from '/screens/Home';
+import LoginScreen from './Login';
+import OrdemServico from './OrdemServico';
+import Header from '../components/Header';
+import Home from './Home';
 
 const Stack = createNativeStackNavigator();
 

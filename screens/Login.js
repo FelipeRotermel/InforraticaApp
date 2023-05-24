@@ -7,8 +7,8 @@ import { MaterialIcons } from '@expo/vector-icons';
 import {StyleSheet, Text, View, Image, TextInput, TouchableOpacity} from "react-native";
 import { LinearGradient } from 'expo-linear-gradient';
 
-import { userState } from '/recoil/atoms/auth';
-import LoginApi from '/api/login';
+import { userState } from '../recoil/atoms/auth';
+import LoginApi from '../api/login';
 
 const loginApi = new LoginApi();
 
@@ -23,6 +23,7 @@ export default function LoginScreen() {
   
 
   const login = async () => {
+    alert('oioioio')
     try {
       const data = await loginApi.login(username, password);
       setUser({
@@ -56,6 +57,7 @@ export default function LoginScreen() {
           style={styles.TextInput}
           placeholder="username"
           onChangeText={setUsername}
+          value={username}
         /> 
         <View style={styles.inputContainer}>
           <TextInput
