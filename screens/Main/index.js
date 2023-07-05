@@ -61,7 +61,7 @@ export default function Main() {
           })}
           />
           )}    
-          <Stack.Screen
+          <Stack.Screen     
             name="Home"
             component={Home}
             options={({ navigation }) => ({
