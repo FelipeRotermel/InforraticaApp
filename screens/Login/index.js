@@ -7,17 +7,17 @@ import { MaterialIcons } from '@expo/vector-icons';
 import {StyleSheet, Text, View, Image, TextInput, TouchableOpacity} from "react-native";
 import { LinearGradient } from 'expo-linear-gradient';
 
-import { userState } from '/recoil/atoms/auth';
-import LoginApi from '/api/login';
+import { userState } from '../../recoil/atoms/auth';
+import LoginApi from '../../api/login';
 
 const loginApi = new LoginApi();
 
-export default function LoginScreen() {
+export default function LoginScreen() { 
 
   const setUser = useSetRecoilState(userState);
 
-  const [username, setUsername] = React.useState('admin');
-  const [password, setPassword] = React.useState('admin');
+  const [username, setUsername] = React.useState('');
+  const [password, setPassword] = React.useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [errorMsg, setErrorMsg] = React.useState(null);
   
@@ -45,7 +45,7 @@ export default function LoginScreen() {
 
   return (
     <View style={styles.container}>
-      <Image style={styles.logo} source={require('../assets/logonome.png')} />
+      <Image style={styles.logo} source={require('../../assets/logonome.png')} />
       <LinearGradient
           colors={['#212224', '#3b3c3d']}
           start={{ x: 0, y: 0 }}
@@ -54,7 +54,7 @@ export default function LoginScreen() {
         />
         <TextInput
           style={styles.TextInput}
-          placeholder="username"
+          placeholder="Nome"
           onChangeText={setUsername}
         /> 
         <View style={styles.inputContainer}>

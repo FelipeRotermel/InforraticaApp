@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, Image, ScrollView } from 'react-native';
 import { Button } from 'react-native-paper';
 import { LinearGradient } from 'expo-linear-gradient';
-import Footer from '../components/Footer';
+import Footer from '../../components/Footer';
 
 export default function Home() {
   return (
@@ -20,15 +20,15 @@ export default function Home() {
       <View style={styles.containerWithImage}>
         <View style={styles.designRight}></View>
         <View style={styles.designLeft}></View>
-        <Image style={styles.image} source={require('../assets/notebook.png')}></Image>
+        <Image style={styles.image} source={require('../../assets/notebook.png')}></Image>
         <Text style={styles.subTitle}>Trabalhamos com:</Text>
       </View>
       <View style={styles.containerWithLogos}>
-        <Image style={styles.logo} source={require('../assets/logos/hp.png')}></Image>
-        <Image style={styles.logo} source={require('../assets/logos/asus.png')}></Image>
-        <Image style={styles.logo} source={require('../assets/logos/dell.png')}></Image>
-        <Image style={styles.logo} source={require('../assets/logos/sony.png')}></Image>
-        <Image style={styles.logo} source={require('../assets/logos/apple.png')}></Image>
+        <Image style={styles.logo} source={require('../../assets/logos/hp.png')}></Image>
+        <Image style={styles.logo} source={require('../../assets/logos/asus.png')}></Image>
+        <Image style={styles.logo} source={require('../../assets/logos/dell.png')}></Image>
+        <Image style={styles.logo} source={require('../../assets/logos/sony.png')}></Image>
+        <Image style={styles.logo} source={require('../../assets/logos/apple.png')}></Image>
         <Text>...</Text>
       </View>
       <View style={styles.containerWithText}>

@@ -25,7 +25,7 @@ function Header({ navigation }) {
           }>
           <Menu.Item onPress={() => navigation.navigate('Home')} title="Home" />
           <Menu.Item onPress={() => navigation.navigate('Login')} title="Login" />
-          <Menu.Item onPress={() => navigation.navigate('OrdemServiço')} title="Ordem de Serviços" />
+          <Menu.Item onPress={() => navigation.navigate('OrdemServico')} title="Ordem de Serviços" />
         </Menu>
         <LinearGradient
           colors={['red', 'green', 'blue']}
