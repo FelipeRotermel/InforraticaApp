@@ -1,6 +1,4 @@
 // import axios from 'axios';
-
-<<<<<<< HEAD
 // export default class LoginApi {
 //   async login(username, password) {
 //     try {
@@ -14,7 +12,6 @@
 //     }
 //   }
 // }
-=======
 export default class LoginApi {
   async login(username, password) {
     alert('oioi')
@@ -29,4 +26,3 @@ export default class LoginApi {
     }
   }
 }
->>>>>>> 57f27751e9a547bdd3ade80b0d925e2783d94d97
