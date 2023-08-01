@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect  } from "react";
 import { StyleSheet, Text, View, LayoutAnimation, ScrollView } from 'react-native';
 import { Card, Button } from 'react-native-paper';
 import { LinearGradient } from 'expo-linear-gradient';
+import ClientesApi from '../../api/cliente';
 
 export default function OrdemServico() {
 
@@ -9,9 +10,11 @@ export default function OrdemServico() {
   const handlePress = () => {
     LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
     setExpanded(!expanded);
+  
   };
 
   return (
+    
     <ScrollView style={styles.ScrollView}>
     <View style={styles.container}>
       <LinearGradient
@@ -21,10 +24,10 @@ export default function OrdemServico() {
           style={{ flex: 1, position: 'absolute', left: 0, right: 0, top: 0, height: '100%' }}
         />
       <Card style={styles.card} onPress={handlePress} expanded={expanded}>
-        <Card.Cover style={styles.image} source={{ uri: 'https://www.tech-stallion.com/assets/examples/mid.jpg' }} />
+        <Card.Cover style={styles.image} />
         <View style={styles.cardText}>
           <View style={styles.cardInfo}>
-            <Text style={styles.title}>Aigo DarkFlash</Text>
+            <Text style={styles.title}></Text>
             <Text style={styles.status}>Aguardando peça</Text>
           </View>
           <View style={[styles.cardContent, { height: expanded ? null : 0, overflow: 'hidden' }]}>
@@ -49,35 +52,7 @@ export default function OrdemServico() {
           </View>
         </View>
       </Card>
-      <Card style={styles.card} onPress={handlePress} expanded={expanded}>
-        <Card.Cover style={styles.image} source={{ uri: 'https://www.tech-stallion.com/assets/examples/budget.jpg' }} />
-        <View style={styles.cardText}>
-          <View style={styles.cardInfo}>
-            <Text style={styles.title}>NZXT H210i</Text>
-            <Text style={styles.status}>Aguardando peça</Text>
-          </View>
-          <View style={[styles.cardContent, { height: expanded ? null : 0, overflow: 'hidden' }]}>
-            <Text style={styles.textContent}>Placa mãe:
-              <Text style={styles.internTextContent}> MSI B550 MAG</Text>
-            </Text>
-            <Text style={styles.textContent}>Processador:
-              <Text style={styles.internTextContent}> Ryzen 5 5600X</Text>
-            </Text>
-            <Text style={styles.textContent}>Memória RAM:
-              <Text style={styles.internTextContent}> 2x Corsair Vengeance Pro 16gb 3200Mhz</Text>
-            </Text>
-            <Text style={styles.textContent}>Placa de vídeo:
-              <Text style={styles.internTextContent}> Palit RTX 3060 Ti</Text>
-            </Text>
-            <Text style={styles.textContent}>Armazenamento:
-              <Text style={styles.internTextContent}> Sabrent Rocket 1TB NVMe M.2</Text>
-            </Text>
-            <Text style={styles.textContent}>Fonte:
-              <Text style={styles.internTextContent}> Corsair TX750M</Text>
-            </Text>
-          </View>
-        </View>
-      </Card>
+      
     </View>
     </ScrollView>
   );

@@ -5,6 +5,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import Footer from '../../components/Footer';
 
 export default function Home() {
+  
   return (
     <ScrollView>
     <View style={styles.container}>
