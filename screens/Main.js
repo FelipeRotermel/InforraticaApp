@@ -13,29 +13,30 @@ import OrdemServico from './OrdemServico';
 import Header from '../components/Header';
 import Home from './Home';
 
+
 const Stack = createNativeStackNavigator();
 
 export default function Main() {
-    const currentUserState = useRecoilValue(userState);
-    const setUser = useSetRecoilState(userState);
+    // const currentUserState = useRecoilValue(userState);
+    // const setUser = useSetRecoilState(userState);
   
-    React.useEffect(() => {
-      const bootstrapAsync = async () => {
-        let access_token = null;
-        try {
-          access_token = await SecureStore.getItemAsync('access_token');
-        } catch (e) {
-          console.log(e);
-        }
-        if (access_token === null) {
-          setUser({ access_token: null, loggedIn: false });
-        } else {
-          setUser({ access_token, loggedIn: true });
-        }
-      };
+    // React.useEffect(() => {
+    //   const bootstrapAsync = async () => {
+    //     let access_token = null;
+    //     try {
+    //       access_token = await SecureStore.getItemAsync('access_token');
+    //     } catch (e) {
+    //       console.log(e);
+    //     }
+    //     if (access_token === null) {
+    //       setUser({ access_token: null, loggedIn: false });
+    //     } else {
+    //       setUser({ access_token, loggedIn: true });
+    //     }
+    //   };
   
-      bootstrapAsync();
-    }, []);
+    //   bootstrapAsync();
+    // }, []);
   
   return (  
     <PaperProvider>
@@ -43,7 +44,7 @@ export default function Main() {
       <NavigationContainer>
         <Stack.Navigator>
             
-        {currentUserState.loggedIn ? (
+      
             <Stack.Screen
             name="Home"
             component={Home}
@@ -51,22 +52,48 @@ export default function Main() {
               header: () => <Header navigation={navigation} />
             })}
           />
-          ) : (
-            <Stack.Screen name="Login" component={LoginScreen}
+          
+            <Stack.Screen name="header" 
+            component={Header}
             options={({ navigation }) => ({
               header: () => <Header navigation={navigation} />
             })}/>
-          )
-        //   ) : (
-        //     <Stack.Screen name="OrdemServiço" component={OrdemServico} 
-        //     options={({ navigation }) => ({
-        //       header: () => <Header navigation={navigation} />
-        //     })}/>
-        //   )
-        }
           
+          
+            <Stack.Screen name="OrdemServico" 
+            component={OrdemServico} 
+            options={({ navigation }) => ({
+              header: () => <Header navigation={navigation} />
+            })}/>
+
         </Stack.Navigator>
       </NavigationContainer>
     </PaperProvider>
-  )
-}
+  
+  );
+          }
+/* <Stack.Navigator>
+            
+            {currentUserState.loggedIn ? (
+                <Stack.Screen
+                name="Home"
+                component={Home}
+                options={({ navigation }) => ({
+                  header: () => <Header navigation={navigation} />
+                })}
+              />
+              ) : (
+                <Stack.Screen name="Login" component={LoginScreen}
+                options={({ navigation }) => ({
+                  header: () => <Header navigation={navigation} />
+                })}/>
+              )
+              ) : (
+                <Stack.Screen name="OrdemServiço" component={OrdemServico} 
+                options={({ navigation }) => ({
+                  header: () => <Header navigation={navigation} />
+                })}/>
+              )
+            }
+              
+</Stack.Navigator> */

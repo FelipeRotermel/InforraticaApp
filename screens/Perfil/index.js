@@ -2,23 +2,24 @@ import React, { useState, useEffect  } from "react";
 import { StyleSheet, Text, View, LayoutAnimation, ScrollView, FlatList  } from 'react-native';
 import { Card, Button } from 'react-native-paper';
 import { LinearGradient } from 'expo-linear-gradient';
-import ComputadoresApi from '../../api/computador';
+import ClientesApi from '../../api/cliente';
 
 export default function OrdemServico() {
   const [expanded, setExpanded] = useState(false);
-  const [computadores, setComputadores] = useState([]);
+  const [clientes, setClientes] = useState([]);
 
   const handlePress = () => {
     LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
     setExpanded(!expanded);
   };
 
+  // Utilizando useEffect para buscar os clientes ao carregar o componente
   useEffect(() => {
-    async function fetchComputadores() {
-      const computadoresData = await new ComputadoresApi().buscarTodosOsComputadores();
-      setComputadores(computadoresData);
+    async function fetchClientes() {
+      const clientesData = await new ClientesApi().buscarTodosOsClientes();
+      setClientes(clientesData);
     }
-    fetchComputadores();
+    fetchClientes();
   }, []);
 
   return (
@@ -33,14 +34,14 @@ export default function OrdemServico() {
 
         {/* Utilizando FlatList para exibir a lista de clientes */}
         <FlatList
-          data={computadores}
-          keyExtractor={(computador) => computador.id.toString()}
+          data={clientes}
+          keyExtractor={(cliente) => cliente.id.toString()}
           renderItem={({ item }) => ( // Corrigindo para usar 'item' em vez de 'cliente'
             <Card style={styles.card} onPress={handlePress} expanded={expanded}>
               {item.nome}
               <Card.Content>
                 <Text style={styles.title}>{item.nome}</Text>
-                <Text style={styles.status}>Status: {item.placa_mae}</Text>
+                <Text style={styles.status}>Status: {item.status}</Text>
                 {/* Outras informações do cliente que você deseja exibir */}
               </Card.Content>
             </Card>
