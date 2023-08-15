@@ -1,6 +1,6 @@
-import React, { useState, useEffect  } from "react";
-import { StyleSheet, Text, View, LayoutAnimation, ScrollView, FlatList  } from 'react-native';
-import { Card, Button } from 'react-native-paper';
+import React, { useState, useEffect } from "react";
+import { StyleSheet, Text, View, LayoutAnimation, ScrollView, FlatList, Image } from 'react-native'; // Importe o componente Image
+import { Card } from 'react-native-paper';
 import { LinearGradient } from 'expo-linear-gradient';
 import ComputadoresApi from '../../api/computador';
 
@@ -31,25 +31,46 @@ export default function OrdemServico() {
           style={{ flex: 1, position: 'absolute', left: 0, right: 0, top: 0, height: '100%' }}
         />
 
-        {/* Utilizando FlatList para exibir a lista de clientes */}
+        {}
         <FlatList
           data={computadores}
           keyExtractor={(computador) => computador.id.toString()}
-          renderItem={({ item }) => ( // Corrigindo para usar 'item' em vez de 'cliente'
+          renderItem={({ item }) => (
             <Card style={styles.card} onPress={handlePress} expanded={expanded}>
-              {item.nome}
+              {}
+              <Image source={{ uri: item.imagem }} style={styles.image} />
               <Card.Content>
-                <Text style={styles.title}>{item.nome}</Text>
+                <Text style={styles.title}>{item.gabinete}</Text>
                 <Text style={styles.status}>Status: {item.placa_mae}</Text>
-                {/* Outras informações do cliente que você deseja exibir */}
+                {}
               </Card.Content>
+              <View style={[styles.cardContent, { height: expanded ? null : 0, overflow: 'hidden' }]}>
+            <Text style={styles.textContent}>Placa mãe:
+              <Text style={styles.internTextContent}> {item.placa_mae}</Text>
+            </Text>
+            <Text style={styles.textContent}>Processador:
+              <Text style={styles.internTextContent}> {item.processador}</Text>
+            </Text>
+            <Text style={styles.textContent}>Memória RAM:
+              <Text style={styles.internTextContent}> {item.memoria_ram}</Text>
+            </Text>
+            <Text style={styles.textContent}>Placa de vídeo:
+              <Text style={styles.internTextContent}> {item.placa_de_video}</Text>
+            </Text>
+            <Text style={styles.textContent}>Armazenamento:
+              <Text style={styles.internTextContent}> {item.hd}</Text>
+            </Text>
+            <Text style={styles.textContent}>Fonte:
+              <Text style={styles.internTextContent}>{item.fonte}</Text>
+            </Text>
+          </View>
             </Card>
           )}
         />
       </View>
     </ScrollView>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
