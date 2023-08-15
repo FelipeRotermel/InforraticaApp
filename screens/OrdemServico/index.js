@@ -1,16 +1,20 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View, LayoutAnimation, ScrollView, FlatList, Image } from 'react-native'; // Importe o componente Image
+import { StyleSheet, Text, View, LayoutAnimation, ScrollView, FlatList, Image } from 'react-native';
 import { Card } from 'react-native-paper';
 import { LinearGradient } from 'expo-linear-gradient';
 import ComputadoresApi from '../../api/computador';
 
 export default function OrdemServico() {
-  const [expanded, setExpanded] = useState(false);
+  const [expandedId, setExpandedId] = useState(null);
   const [computadores, setComputadores] = useState([]);
 
-  const handlePress = () => {
+  const handlePress = (id) => {
     LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
-    setExpanded(!expanded);
+    if (expandedId === id) {
+      setExpandedId(null);
+    } else {
+      setExpandedId(id);
+    }
   };
 
   useEffect(() => {
@@ -32,20 +36,19 @@ export default function OrdemServico() {
         />
 
         {}
-        <FlatList
+      <FlatList
           data={computadores}
           keyExtractor={(computador) => computador.id.toString()}
           renderItem={({ item }) => (
-            <Card style={styles.card} onPress={handlePress} expanded={expanded}>
-              {}
+            <Card style={styles.card} onPress={() => handlePress(item.id)} expanded={expandedId === item.id}>
               <Image source={{ uri: item.imagem }} style={styles.image} />
               <Card.Content>
                 <Text style={styles.title}>{item.gabinete}</Text>
                 <Text style={styles.status}>Status: {item.placa_mae}</Text>
-                {}
               </Card.Content>
-              <View style={[styles.cardContent, { height: expanded ? null : 0, overflow: 'hidden' }]}>
-            <Text style={styles.textContent}>Placa mãe:
+              <View style={[styles.cardContent, { height: expandedId === item.id ? null : 0, overflow: 'hidden' }]}>
+                {/* Informações adicionais do card */}
+                <Text style={styles.textContent}>Placa mãe:
               <Text style={styles.internTextContent}> {item.placa_mae}</Text>
             </Text>
             <Text style={styles.textContent}>Processador:
@@ -63,7 +66,7 @@ export default function OrdemServico() {
             <Text style={styles.textContent}>Fonte:
               <Text style={styles.internTextContent}>{item.fonte}</Text>
             </Text>
-          </View>
+              </View>
             </Card>
           )}
         />
