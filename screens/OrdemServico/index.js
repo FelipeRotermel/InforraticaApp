@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View, LayoutAnimation, ScrollView, FlatList, Image } from 'react-native';
+import { StyleSheet, Text, View, LayoutAnimation, FlatList, Image } from 'react-native';
 import { Card } from 'react-native-paper';
 import { LinearGradient } from 'expo-linear-gradient';
-import ComputadoresApi from '../../api/computador';
+import OrdemServicoApi from '../../api/ordemServico';
 
 export default function OrdemServico() {
   const [expandedId, setExpandedId] = useState(null);
-  const [computadores, setComputadores] = useState([]);
+  const [ordensServico, setOrdensServico] = useState([]);
 
   const handlePress = (id) => {
     LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
@@ -18,15 +18,18 @@ export default function OrdemServico() {
   };
 
   useEffect(() => {
-    async function fetchComputadores() {
-      const computadoresData = await new ComputadoresApi().buscarTodosOsComputadores();
-      setComputadores(computadoresData);
+    async function fetchOrdensServico() {
+      try {
+        const ordensServicoData = await new OrdemServicoApi().buscarTodasAsOrdensServico();
+        setOrdensServico(ordensServicoData);
+      } catch (error) {
+        console.error("Error fetching ordens:", error);
+      }
     }
-    fetchComputadores();
-  }, []);
+    fetchOrdensServico();
+  }, []);  
 
   return (
-    <ScrollView style={styles.ScrollView}>
       <View style={styles.container}>
         <LinearGradient
           colors={['#212224', '#3b3c3d']}
@@ -37,41 +40,41 @@ export default function OrdemServico() {
 
         {}
       <FlatList
-          data={computadores}
-          keyExtractor={(computador) => computador.id.toString()}
+          data={ordensServico}
+          style={styles.flatlist}
+          keyExtractor={(ordemServico) => ordemServico.id.toString()}
           renderItem={({ item }) => (
             <Card style={styles.card} onPress={() => handlePress(item.id)} expanded={expandedId === item.id}>
-              <Image source={{ uri: item.imagem }} style={styles.image} />
+              <Image source={{ uri: item.computador.imagem }} style={styles.image} />
               <Card.Content>
-                <Text style={styles.title}>{item.gabinete}</Text>
-                <Text style={styles.status}>Status: {item.placa_mae}</Text>
+                <Text style={styles.title}>{item.computador.gabinete}</Text>
+                <Text style={styles.data}>Data de entrada: {item.data}</Text>
+                <Text style={styles.status}>Status: {item.descricao}</Text>
               </Card.Content>
-              <View style={[styles.cardContent, { height: expandedId === item.id ? null : 0, overflow: 'hidden' }]}>
-                {/* Informações adicionais do card */}
+              <View style={[styles.cardContent, { height: expandedId === item.id ? null : 0, overflow: 'hidden' }]}>  
                 <Text style={styles.textContent}>Placa mãe:
-              <Text style={styles.internTextContent}> {item.placa_mae}</Text>
+              <Text style={styles.internTextContent}> {item.computador.placa_mae}</Text>
             </Text>
             <Text style={styles.textContent}>Processador:
-              <Text style={styles.internTextContent}> {item.processador}</Text>
+              <Text style={styles.internTextContent}> {item.computador.processador}</Text>
             </Text>
             <Text style={styles.textContent}>Memória RAM:
-              <Text style={styles.internTextContent}> {item.memoria_ram}</Text>
+              <Text style={styles.internTextContent}> {item.computador.memoria_ram}</Text>
             </Text>
             <Text style={styles.textContent}>Placa de vídeo:
-              <Text style={styles.internTextContent}> {item.placa_de_video}</Text>
+              <Text style={styles.internTextContent}> {item.computador.placa_de_video}</Text>
             </Text>
             <Text style={styles.textContent}>Armazenamento:
-              <Text style={styles.internTextContent}> {item.hd}</Text>
+              <Text style={styles.internTextContent}> {item.computador.hd}</Text>
             </Text>
             <Text style={styles.textContent}>Fonte:
-              <Text style={styles.internTextContent}>{item.fonte}</Text>
+              <Text style={styles.internTextContent}>{item.computador.fonte}</Text>
             </Text>
               </View>
             </Card>
           )}
         />
       </View>
-    </ScrollView>
   );
 }
 
@@ -81,25 +84,29 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: "center",
   },
-  ScrollView: {
-    flex: 1,
-    backgroundColor: '#3b3c3d',
-    height: '100%',
+  flatlist: {
+    marginTop: '10%',
+    marginBottom: '10%',
+    height: '100%', 
   },
   card: {
-    width: '90%',
+    width: '100%',
     height: 'auto',
     marginTop: '20%',
-    borderRadius: 13,
     backgroundColor: '#fff',
   },
   image: {
     resizeMode: 'stretch',
     height: 300,
+    width: 350,
   },
   title: {
     fontSize: 20,
     fontWeight: 'bold',
+  },
+  data: {
+    marginTop: 5,
+    fontSize: 15,
   },
   status: {
     marginTop: 5,
@@ -122,6 +129,9 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     height: 'auto',
     width: '100%',
+    paddingLeft: 10,
+    paddingRight: 10,
+    paddingTop: 10,
   },
   content: {
     fontSize: 15,
