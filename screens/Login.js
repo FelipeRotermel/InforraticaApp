@@ -16,26 +16,28 @@ export default function LoginScreen() {
 
   const setUser = useSetRecoilState(userState);
 
-  const [username, setUsername] = React.useState('admin');
-  const [password, setPassword] = React.useState('admin');
+  const [email, setEmail] = React.useState('aluno@gmail.com');
+  const [password, setPassword] = React.useState('508265!Gui');
   const [showPassword, setShowPassword] = useState(false);
   const [errorMsg, setErrorMsg] = React.useState(null);
   
 
   const login = async () => {
-    alert('oioioio')
+    console.log('login');
     try {
-      const data = await loginApi.login(username, password);
+      const data = await loginApi.login(email, password);
       setUser({
         loggedIn: true,
-        access_token: data.access_token,
-        refresh_token: data.refresh_token,
+        access: data.access,
+        refresh: data.refresh,
       });
+      console.log(data);
       if (Platform.OS !== 'web') {
-        await SecureStore.setItemAsync('access_token', data.access_token);
+        await SecureStore.setItemAsync('access_token', data.access);
       }
+      console.log(data);
     } catch (error) {
-      setUser({ loggedIn: false, access_token: null, refresh_token: null });
+      setUser({ loggedIn: false, access: null, refresh: null });
       setErrorMsg('Usuário ou senha inválidos!');
       if (Platform.OS !== 'web') {
         await SecureStore.deleteItemAsync('access_token');
@@ -55,9 +57,9 @@ export default function LoginScreen() {
         />
         <TextInput
           style={styles.TextInput}
-          placeholder="username"
-          onChangeText={setUsername}
-          value={username}
+          placeholder="email"
+          onChangeText={setEmail}
+          value={email}
         /> 
         <View style={styles.inputContainer}>
           <TextInput

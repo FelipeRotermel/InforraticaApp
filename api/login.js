@@ -1,4 +1,4 @@
-// import axios from 'axios';
+import axios from 'axios';
 // export default class LoginApi {
 //   async login(username, password) {
 //     try {
@@ -13,11 +13,11 @@
 //   }
 // }
 export default class LoginApi {
-  async login(username, password) {
-    alert('oioi')
+  async login(email, password) {
+    console.log('login2');
     try {
-      const { data } = await axios.post('http://191.52.55.47:19003/auth', {
-        username,
+      const { data } = await axios.post('http://191.52.55.47:19002/token/', {
+        email,
         password,
       });
       return Promise.resolve(data);
