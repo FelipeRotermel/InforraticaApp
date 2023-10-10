@@ -42,36 +42,31 @@ export default function Main() {
     <PaperProvider>
       <StatusBar backgroundColor="#212224" />
       <NavigationContainer>
-        <Stack.Navigator>
-            
-      
-            <Stack.Screen
-            name="Home"
-            component={Home}
-            options={({ navigation }) => ({
-              header: () => <Header navigation={navigation} />
-            })}
-          />
-          
-            <Stack.Screen name="header" 
-            component={Header}
-            options={({ navigation }) => ({
-              header: () => <Header navigation={navigation} />
-            })}/>
-          
-          
-            <Stack.Screen name="OrdemServico" 
-            component={OrdemServico} 
-            options={({ navigation }) => ({
-              header: () => <Header navigation={navigation} />
-            })}/>
+  <Stack.Navigator initialRouteName={currentUserState.loggedIn ? "Home" : "Login"}>
+    <Stack.Screen
+      name="Home"
+      component={Home}
+      options={({ navigation }) => ({
+        header: () => <Header navigation={navigation} />
+      })}
+    />
 
-            <Stack.Screen name="Login" component={LoginScreen}
-                options={({ navigation }) => ({
-                  header: () => <Header navigation={navigation} />
-                })}/>
+    <Stack.Screen
+      name="Login"
+      component={LoginScreen}
+      options={({ navigation }) => ({
+        header: () => <Header navigation={navigation} />
+      })}
+    />
 
-        </Stack.Navigator>
+    <Stack.Screen
+      name="OrdemServico"
+      component={OrdemServico}
+      options={({ navigation }) => ({
+        header: () => <Header navigation={navigation} />
+      })}
+    />
+  </Stack.Navigator>
       </NavigationContainer>
     </PaperProvider>
   

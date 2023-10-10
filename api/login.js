@@ -16,7 +16,7 @@ export default class LoginApi {
   async login(email, password) {
     console.log('login2');
     try {
-      const { data } = await axios.post('http://191.52.55.47:19002/token/', {
+      const { data } = await axios.post('http://191.52.55.47:19003/token/', {
         email,
         password,
       });

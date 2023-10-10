@@ -17,7 +17,7 @@ export default function LoginScreen() {
   const setUser = useSetRecoilState(userState);
 
   const [email, setEmail] = React.useState('aluno@gmail.com');
-  const [password, setPassword] = React.useState('508265!Gui');
+  const [password, setPassword] = React.useState('aluno');
   const [showPassword, setShowPassword] = useState(false);
   const [errorMsg, setErrorMsg] = React.useState(null);
   
@@ -79,6 +79,7 @@ export default function LoginScreen() {
           </TouchableOpacity>
         </View>
         <TouchableOpacity>
+          
           <Text style={styles.forgotButton}>Esqueceu a senha?</Text>
         </TouchableOpacity>
 
