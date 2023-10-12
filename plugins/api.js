@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const api = axios.create({
-    baseURL: "http://191.52.55.47:19003/"
+    baseURL: "https://silver-spoon-vj57479jgvp2x59q-8000.app.github.dev/"
     
   })
 
