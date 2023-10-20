@@ -12,3 +12,7 @@ Links do projeto:
 * Documentação: https://github.com/FelipeRotermel/Inforratica
 * App: https://github.com/FelipeRotermel/InforraticaApp.git
 * Site: https://github.com/FelipeRotermel/InforraticaSite.git
+
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+nvm install 21.0.0
+nvm use 21.0.0
