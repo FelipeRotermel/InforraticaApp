@@ -8,9 +8,8 @@ import {StyleSheet, Text, View, Image, TextInput, TouchableOpacity} from "react-
 import { LinearGradient } from 'expo-linear-gradient';
 
 import { userState } from '../recoil/atoms/auth';
-import LoginApi from '../api/login';
+import loginApi from '../api/login';
 
-const loginApi = new LoginApi();
 
 export default function LoginScreen() {
 
@@ -23,7 +22,6 @@ export default function LoginScreen() {
   
 
   const login = async () => {
-    console.log('login');
     try {
       const data = await loginApi.login(email, password);
       setUser({
@@ -31,17 +29,15 @@ export default function LoginScreen() {
         access: data.access,
         refresh: data.refresh,
       });
-      console.log(data);
-      if (Platform.OS !== 'web') {
-        await SecureStore.setItemAsync('access_token', data.access);
-      }
-      console.log(data);
+      setEmail('');
+      setPassword('');
+      setErrorMsg(null);
+      await SecureStore.setItemAsync('access', data.access);
+      navigation.goBack();
     } catch (error) {
       setUser({ loggedIn: false, access: null, refresh: null });
       setErrorMsg('Usuário ou senha inválidos!');
-      if (Platform.OS !== 'web') {
-        await SecureStore.deleteItemAsync('access_token');
-      }
+      await SecureStore.deleteItemAsync('access');
     }
   };
 

@@ -1,12 +1,10 @@
-import api from "../plugins/api";
-export default class OrdemServicoApi {
-  async buscarTodasAsOrdensServico() {
-    const response = await api.get("/ordemservico/");
-    return response.data;
-  }
+import api from '../plugins/api'
 
-  async buscarOrdemServico(id) {
-    const response = await api.get(`/ordemservico/${id}`);
-    return response.data;
+class OrdemServicoApi {
+  async buscarTodasAsOrdensServico() {
+    const response = await api.get('/ordemservico/user_orders/')
+    return response.data
   }
 }
+
+export default new OrdemServicoApi()

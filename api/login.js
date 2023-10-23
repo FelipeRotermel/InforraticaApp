@@ -1,8 +1,7 @@
 import api from '../plugins/api';
 
-export default class LoginApi {
+class LoginApi {
   async login(email, password) {
-    console.log('login2');
     try {
       const { data } = await api.post('/token/', {
         email,
@@ -14,3 +13,5 @@ export default class LoginApi {
     }
   }
 }
+
+export default new LoginApi();

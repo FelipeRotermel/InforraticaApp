@@ -1,33 +1,38 @@
-import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View, LayoutAnimation, FlatList, Image } from 'react-native';
+import { useEffect, useState, useCallback } from 'react';
+import { RefreshControl, StyleSheet, Text, View, LayoutAnimation, ScrollView, Image } from 'react-native';
 import { Card } from 'react-native-paper';
 import { LinearGradient } from 'expo-linear-gradient';
-import OrdemServicoApi from '../../api/ordemServico';
+import { useRecoilValue } from 'recoil';
+import { userState } from '../../recoil/atoms/auth';
+import ordemServicoApi from '../../api/ordemServico';
 
 export default function OrdemServico() {
-  const [expandedId, setExpandedId] = useState(null);
+  // const [expandedId, setExpandedId] = useState(null);
   const [ordensServico, setOrdensServico] = useState([]);
+  const [refreshing, setRefreshing] = useState(false);
+  const currentUserState = useRecoilValue(userState);
 
-  const handlePress = (id) => {
-    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
-    if (expandedId === id) {
-      setExpandedId(null);
-    } else {
-      setExpandedId(id);
-    }
+  // const handlePress = (id) => {
+  //   LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+  //   if (expandedId === id) {
+  //     setExpandedId(null);
+  //   } else {
+  //     setExpandedId(id);
+  //   }
+  // };
+  const fetchOrdensServico = async () => {
+    const data = await ordemServicoApi.buscarTodasAsOrdensServico();
+    setOrdensServico(data);
   };
-
+  const onRefresh = useCallback(async () => {
+    setRefreshing(true);
+    await fetchOrdensServico();
+    setRefreshing(false);
+  }, []);
   useEffect(() => {
-    async function fetchOrdensServico() {
-      try {
-        const ordensServicoData = await new OrdemServicoApi().buscarTodasAsOrdensServico();
-        setOrdensServico(ordensServicoData);
-      } catch (error) {
-        console.error("Error fetching ordens:", error);
-      }
-    }
     fetchOrdensServico();
-  }, []);  
+  }, []);
+
 
   return (
       <View style={styles.container}>
@@ -38,42 +43,43 @@ export default function OrdemServico() {
           style={{ flex: 1, position: 'absolute', left: 0, right: 0, top: 0, height: '100%' }}
         />
 
-        {}
-      <FlatList
-          data={ordensServico}
-          style={styles.flatlist}
-          keyExtractor={(ordemServico) => ordemServico.id.toString()}
-          renderItem={({ item }) => (
-            <Card style={styles.card} onPress={() => handlePress(item.id)} expanded={expandedId === item.id}>
-              <Image source={{ uri: item.computador.imagem }} style={styles.image} />
+        <ScrollView
+          refreshControl={
+            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+          }
+        >
+          {ordensServico.map((ordem) => (
+              // onPress={() => handlePress(ordem.id)} expanded={expandedId === ordem.id}
+            <Card style={styles.card} key={ordem.id} >
+              <Image source={{ uri: ordem.computador.imagem }} style={styles.image} />
               <Card.Content>
-                <Text style={styles.title}>{item.computador.gabinete}</Text>
-                <Text style={styles.data}>Data de entrada: {item.data}</Text>
-                <Text style={styles.status}>Status: {item.descricao}</Text>
+                <Text style={styles.title}>{ordem.computador.gabinete}</Text>
+                <Text style={styles.data}>Data de entrada: {ordem.data}</Text>
+                <Text style={styles.status}>Status: {ordem.descricao}</Text>
               </Card.Content>
-              <View style={[styles.cardContent, { height: expandedId === item.id ? null : 0, overflow: 'hidden' }]}>  
+              <View style={[styles.cardContent, { height: expandedId === ordem.id ? null : 0, overflow: 'hidden' }]}>  
                 <Text style={styles.textContent}>Placa mãe:
-              <Text style={styles.internTextContent}> {item.computador.placa_mae}</Text>
+              <Text style={styles.internTextContent}> {ordem.computador.placa_mae}</Text>
             </Text>
             <Text style={styles.textContent}>Processador:
-              <Text style={styles.internTextContent}> {item.computador.processador}</Text>
+              <Text style={styles.internTextContent}> {ordem.computador.processador}</Text>
             </Text>
             <Text style={styles.textContent}>Memória RAM:
-              <Text style={styles.internTextContent}> {item.computador.memoria_ram}</Text>
+              <Text style={styles.internTextContent}> {ordem.computador.memoria_ram}</Text>
             </Text>
             <Text style={styles.textContent}>Placa de vídeo:
-              <Text style={styles.internTextContent}> {item.computador.placa_de_video}</Text>
+              <Text style={styles.internTextContent}> {ordem.computador.placa_de_video}</Text>
             </Text>
             <Text style={styles.textContent}>Armazenamento:
-              <Text style={styles.internTextContent}> {item.computador.hd}</Text>
+              <Text style={styles.internTextContent}> {ordem.computador.hd}</Text>
             </Text>
             <Text style={styles.textContent}>Fonte:
-              <Text style={styles.internTextContent}>{item.computador.fonte}</Text>
+              <Text style={styles.internTextContent}>{ordem.computador.fonte}</Text>
             </Text>
               </View>
             </Card>
-          )}
-        />
+           ))}
+           </ScrollView>
       </View>
   );
 }
