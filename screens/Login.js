@@ -11,29 +11,30 @@ import { userState } from '../recoil/atoms/auth';
 import loginApi from '../api/login';
 
 
-export default function LoginScreen() {
-
-  const setUser = useSetRecoilState(userState);
+export default function LoginScreen({navigation}) {
 
   const [email, setEmail] = React.useState('aluno@gmail.com');
   const [password, setPassword] = React.useState('aluno');
   const [showPassword, setShowPassword] = useState(false);
   const [errorMsg, setErrorMsg] = React.useState(null);
   
+  const setUser = useSetRecoilState(userState);
 
   const login = async () => {
     try {
       const data = await loginApi.login(email, password);
+      console.log(data)
       setUser({
         loggedIn: true,
         access: data.access,
         refresh: data.refresh,
       });
-      setEmail('');
-      setPassword('');
+      // setEmail('');
+      // setPassword('');
       setErrorMsg(null);
+      console.log('aqui')
       await SecureStore.setItemAsync('access', data.access);
-      navigation.goBack();
+      navigation.navigate('Home');
     } catch (error) {
       setUser({ loggedIn: false, access: null, refresh: null });
       setErrorMsg('Usuário ou senha inválidos!');
@@ -79,8 +80,8 @@ export default function LoginScreen() {
           <Text style={styles.forgotButton}>Esqueceu a senha?</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.loginButton}>
-          <Text style={styles.loginText} onPress={() => login()}>LOGIN</Text>
+        <TouchableOpacity style={styles.loginButton}  onPress={() => login()}>
+          <Text style={styles.loginText}>LOGIN</Text>
         </TouchableOpacity> 
         <Text>{errorMsg}</Text>
     </View> 
