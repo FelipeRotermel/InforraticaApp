@@ -36,13 +36,13 @@ export default function OrdemServico() {
 
   return (
       <View style={styles.container}>
-        <LinearGradient
-          colors={['#212224', '#3b3c3d']}
+        {/* <LinearGradient
+        colors={['#212224', '#3b3c3d']}
           start={{ x: 0, y: 0 }}
           end={{ x: 0, y: 1 }}
           style={{ flex: 1, position: 'absolute', left: 0, right: 0, top: 0, height: '100%' }}
-        />
-
+        /> */}
+  
         <ScrollView
           refreshControl={
             <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
@@ -51,13 +51,13 @@ export default function OrdemServico() {
           {ordensServico.map((ordem) => (
               // onPress={() => handlePress(ordem.id)} expanded={expandedId === ordem.id}
             <Card style={styles.card} key={ordem.id} >
-              <Image source={{ uri: ordem.computador.imagem }} style={styles.image} />
+              {/* <Image source={{ uri: ordem.computador.cover.url }} style={styles.image} /> */}
               <Card.Content>
                 <Text style={styles.title}>{ordem.computador.gabinete}</Text>
                 <Text style={styles.data}>Data de entrada: {ordem.data}</Text>
                 <Text style={styles.status}>Status: {ordem.descricao}</Text>
               </Card.Content>
-              <View style={[styles.cardContent, { height: expandedId === ordem.id ? null : 0, overflow: 'hidden' }]}>  
+              <View style={[styles.cardContent, ]}>  
                 <Text style={styles.textContent}>Placa mãe:
               <Text style={styles.internTextContent}> {ordem.computador.placa_mae}</Text>
             </Text>

@@ -17,26 +17,21 @@ import Home from './Home';
 const Stack = createNativeStackNavigator();
 
 export default function Main() {
-    const currentUserState = useRecoilValue(userState);
-    const setUser = useSetRecoilState(userState);
-  
-    React.useEffect(() => {
-      const bootstrapAsync = async () => {
-        let access_token = null;
-        try {
-          access_token = await SecureStore.getItemAsync('access_token');
-        } catch (e) {
-          console.log(e);
-        }
-        if (access_token === null) {
-          setUser({ access_token: null, loggedIn: false });
-        } else {
-          setUser({ access_token, loggedIn: true });
-        }
-      };
-  
-      bootstrapAsync();
-    }, []);
+  const setUser = useSetRecoilState(userState);
+  const currentUserState = useRecoilValue(userState);
+
+  const checkPreviousLoggedUser = async () => {
+    const access = (await SecureStore.getItemAsync('access')) || null;
+    const refresh = (await SecureStore.getItemAsync('refresh')) || null;
+    if (access && refresh) {
+      setUser({ loggedIn: true, access, refresh });
+    }
+  };
+
+  React.useEffect(() => {
+    checkPreviousLoggedUser();
+  }, []);
+
   
   return (  
     <PaperProvider>
