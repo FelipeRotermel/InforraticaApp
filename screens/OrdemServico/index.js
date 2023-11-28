@@ -6,63 +6,84 @@ import { useRecoilValue } from 'recoil';
 import { userState } from '../../recoil/atoms/auth';
 import ordemServicoApi from '../../api/ordemServico';
 
+// ... (other imports)
+
+// ... (outros imports)
+
 export default function OrdemServico() {
-  // const [expandedId, setExpandedId] = useState(null);
+  const [expandedId, setExpandedId] = useState(null);
   const [ordensServico, setOrdensServico] = useState([]);
   const [refreshing, setRefreshing] = useState(false);
   const currentUserState = useRecoilValue(userState);
 
-  // const handlePress = (id) => {
-  //   LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
-  //   if (expandedId === id) {
-  //     setExpandedId(null);
-  //   } else {
-  //     setExpandedId(id);
-  //   }
-  // };
+  const handlePress = (id) => {
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+    if (expandedId === id) {
+      setExpandedId(null);
+    } else {
+      setExpandedId(id);
+    }
+  };
+
   const fetchOrdensServico = async () => {
     const data = await ordemServicoApi.buscarTodasAsOrdensServico();
     setOrdensServico(data);
   };
+
   const onRefresh = useCallback(async () => {
     setRefreshing(true);
     await fetchOrdensServico();
     setRefreshing(false);
   }, []);
+
   useEffect(() => {
     fetchOrdensServico();
   }, []);
- 
-  
 
   return (
-      <View style={styles.container}>
-        {/* <LinearGradient
-        colors={['#212224', '#3b3c3d']}
-          start={{ x: 0, y: 0 }}
-          end={{ x: 0, y: 1 }}
-          style={{ flex: 1, position: 'absolute', left: 0, right: 0, top: 0, height: '100%' }}
-        /> */}
-  
-        <ScrollView
-          refreshControl={
-            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-          }
-        >
-          {ordensServico.map((ordem) => (
-              // onPress={() => handlePress(ordem.id)} expanded={expandedId === ordem.id}
-            <Card style={styles.card} key={ordem.id} >
-              {/* <Image source={{ uri: ordem.computador.cover.url }} style={styles.image} /> */}
-              <Card.Content>
-                <Text style={styles.title}>{ordem.computador?.gabinete}</Text>
-                <Text style={styles.data}>Data de entrada: {ordem.data}</Text>
-                <Text style={styles.status}>Status: {ordem.status}</Text>
-              </Card.Content>
-              <View style={[styles.cardContent, ]}>  
-                <Text style={styles.textContent}>Placa mãe:
-              <Text style={styles.internTextContent}> {ordem.computador?.placa_mae}</Text>
-            </Text>
-            <Text style={styles.textContent}>Processador:
+    <View style={styles.container}>
+      {/* ... (outros estilos) */}
+      <ScrollView
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }
+      >
+        {ordensServico.map((ordem) => (
+          <Card
+            onPress={() => handlePress(ordem.id)}
+            expanded={expandedId === ordem.id}
+            style={styles.card}
+            key={ordem.id}
+          >
+            <Card.Content>
+              {ordem.computador ? (
+                <>
+                  {ordem.computador.capa?.file && (
+                    <Image source={{ uri: ordem.computador.capa.file }} style={styles.image} />
+                  )}
+                  <Text style={styles.title}>{ordem.computador.gabinete}</Text>
+                  <Text style={styles.data}>Data de entrada: {ordem.data}</Text>
+                  <Text style={styles.status}>Status: {ordem.status}</Text>
+                </>
+              ) : (
+                <>
+                  {ordem.notebook.capa?.file && (
+                    <Image source={{ uri: ordem.notebook?.capa.file }} style={styles.image} />
+                  )}
+                  <Text style={styles.title}>{ordem.notebook.marca} - {ordem.notebook.modelo}</Text>
+                  <Text style={styles.data}>Data de entrada: {ordem.data}</Text>
+                  <Text style={styles.status}>Status: {ordem.status}</Text>
+                </>
+              )}
+            </Card.Content>
+
+            {expandedId === ordem.id && ordem.computador && (
+              <View style={styles.cardContent}>
+                <Text style={styles.textContent}>
+                  Placa mãe:
+                  <Text style={styles.internTextContent}> {ordem.computador.placa_mae}</Text>
+                </Text>
+                <Text style={styles.textContent}>Processador:
               <Text style={styles.internTextContent}> {ordem.computador?.processador}</Text>
             </Text>
             <Text style={styles.textContent}>Memória RAM:
@@ -78,10 +99,11 @@ export default function OrdemServico() {
               <Text style={styles.internTextContent}>{ordem.computador?.fonte}</Text>
             </Text>
               </View>
-            </Card>
-           ))}
-           </ScrollView>
-      </View>
+            )}
+          </Card>
+        ))}
+      </ScrollView>
+    </View>
   );
 }
 

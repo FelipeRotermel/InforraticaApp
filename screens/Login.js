@@ -32,7 +32,6 @@ export default function LoginScreen({navigation}) {
       setEmail('');
       setPassword('');
       setErrorMsg(null);
-      console.log('aqui')
       await SecureStore.setItemAsync('access', data.access);
       await SecureStore.setItemAsync('refresh', data.refresh);
       navigation.navigate('Home');
