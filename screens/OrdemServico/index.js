@@ -32,7 +32,8 @@ export default function OrdemServico() {
   useEffect(() => {
     fetchOrdensServico();
   }, []);
-
+ 
+  
 
   return (
       <View style={styles.container}>
@@ -53,28 +54,28 @@ export default function OrdemServico() {
             <Card style={styles.card} key={ordem.id} >
               {/* <Image source={{ uri: ordem.computador.cover.url }} style={styles.image} /> */}
               <Card.Content>
-                <Text style={styles.title}>{ordem.computador.gabinete}</Text>
+                <Text style={styles.title}>{ordem.computador?.gabinete}</Text>
                 <Text style={styles.data}>Data de entrada: {ordem.data}</Text>
-                <Text style={styles.status}>Status: {ordem.descricao}</Text>
+                <Text style={styles.status}>Status: {ordem.status}</Text>
               </Card.Content>
               <View style={[styles.cardContent, ]}>  
                 <Text style={styles.textContent}>Placa mãe:
-              <Text style={styles.internTextContent}> {ordem.computador.placa_mae}</Text>
+              <Text style={styles.internTextContent}> {ordem.computador?.placa_mae}</Text>
             </Text>
             <Text style={styles.textContent}>Processador:
-              <Text style={styles.internTextContent}> {ordem.computador.processador}</Text>
+              <Text style={styles.internTextContent}> {ordem.computador?.processador}</Text>
             </Text>
             <Text style={styles.textContent}>Memória RAM:
-              <Text style={styles.internTextContent}> {ordem.computador.memoria_ram}</Text>
+              <Text style={styles.internTextContent}> {ordem.computador?.memoria_ram}</Text>
             </Text>
             <Text style={styles.textContent}>Placa de vídeo:
-              <Text style={styles.internTextContent}> {ordem.computador.placa_de_video}</Text>
+              <Text style={styles.internTextContent}> {ordem.computador?.placa_de_video}</Text>
             </Text>
             <Text style={styles.textContent}>Armazenamento:
-              <Text style={styles.internTextContent}> {ordem.computador.hd}</Text>
+              <Text style={styles.internTextContent}> {ordem.computador?.hd}</Text>
             </Text>
             <Text style={styles.textContent}>Fonte:
-              <Text style={styles.internTextContent}>{ordem.computador.fonte}</Text>
+              <Text style={styles.internTextContent}>{ordem.computador?.fonte}</Text>
             </Text>
               </View>
             </Card>
