@@ -6,10 +6,6 @@ import { useRecoilValue } from 'recoil';
 import { userState } from '../../recoil/atoms/auth';
 import ordemServicoApi from '../../api/ordemServico';
 
-// ... (other imports)
-
-// ... (outros imports)
-
 export default function OrdemServico() {
   const [expandedId, setExpandedId] = useState(null);
   const [ordensServico, setOrdensServico] = useState([]);
@@ -42,7 +38,6 @@ export default function OrdemServico() {
 
   return (
     <View style={styles.container}>
-      {/* ... (outros estilos) */}
       <ScrollView
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
@@ -111,7 +106,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: "center",
+    alignItems: "stretch",
   },
   flatlist: {
     marginTop: '10%',
@@ -126,20 +121,20 @@ const styles = StyleSheet.create({
   },
   image: {
     resizeMode: 'stretch',
-    height: 300,
-    width: 350,
+    height: 330,
+    width: '100%',
   },
   title: {
-    fontSize: 20,
+    fontSize: 30,
     fontWeight: 'bold',
   },
   data: {
     marginTop: 5,
-    fontSize: 15,
+    fontSize: 20,
   },
   status: {
     marginTop: 5,
-    fontSize: 15,
+    fontSize: 20,
     color: '#ff0000',
   },
   cardText: {
@@ -163,10 +158,10 @@ const styles = StyleSheet.create({
     paddingTop: 10,
   },
   content: {
-    fontSize: 15,
+    fontSize: 20,
   },
   textContent: {
-    fontSize: 15,
+    fontSize: 20,
     fontWeight: 'bold',
   },
   internTextContent: {
