@@ -17,7 +17,7 @@ class ImageService {
       type,
     });
     try {
-      const { data } = await api.post('media/images/', formData, {
+      const { data } = await api.post('/api/media/images/', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
       return data;

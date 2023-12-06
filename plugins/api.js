@@ -6,7 +6,7 @@ const { MY_IP } = process.env;
 
 const api = axios.create({
   // baseURL: `http://191.52.55.47:19003/`, 
-  baseURL: "https://inforratica-django.1.us-1.fl0.io/",
+  baseURL: "http://inforratica-django.1.us-1.fl0.io",
   headers: {
     'Content-Type': 'application/json',
   },

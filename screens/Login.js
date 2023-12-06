@@ -35,10 +35,8 @@ export default function LoginScreen({navigation}) {
       await SecureStore.setItemAsync('access', data.access);
       await SecureStore.setItemAsync('refresh', data.refresh);
       navigation.navigate('Home');
-    } catch (error) {
-      setUser({ loggedIn: false, access: null, refresh: null });
+    } catch (error) {  
       setErrorMsg('Usuário ou senha inválidos!');
-      await SecureStore.deleteItemAsync('access');
     }
   };
 
